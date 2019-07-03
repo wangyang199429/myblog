@@ -1,3 +1,4 @@
+
 #js基础知识必备
 ##变量常量
 #####常量：
@@ -85,9 +86,199 @@ var years=year%4==0
  ```
 
 ### 逻辑结构
-
+###### 浏览器函数
+>alert() ,prompt()
+###### 流程语句**
+1.流程控制 
+  1.if语句
+  2.if-else语句
+  3.if-else的嵌套，判断多种情况
+  4.switch-case语句
+``` js
+var score=100;
+score=parseInt(score/10);
+switch(score){
+   case 10:
+   case 9:
+   console.log('优秀');
+   break;
+   case 8 :
+   console.log('良好');
+   break;
+   case 7 :
+   console.log('中等');
+   break;
+   case 6 :
+   console.log('及格');
+   break;
+   case 5 :
+   console.log('不及格');
+}
+ ```
+###### *循环执行**
+>循环执行
+  while循环
+  break
+  do..while循环
+  for循环
+  for(初始值;循环条件;i的变化){循环体}
+  continue：跳过本次循环，继续下一次循环
+  循环嵌套
 ### 函数对象
+###### 自定义函数**
+>自定义函数
+  普通函数
+  带参数函数
+  带有返回值的函数
 
+###### **作用域**
+ 1. 变量的作用域
+ > 注意：1.在函数内部使用var关键字声明的变量是局
+ 部变量，不使用var关键字声明的变量是全局变量。
+2.变量的申明提升：js程序执行前，会将var定义的变量
+提升到所在作用域的最前面，但是赋值位置不变
+
+ 2. 函数作用域
+ > 全局作用域：在全局作用域下创建的函数可以在**任意位置**
+######  **调用。**
+函数(局部)作用域：在函数(局部)作用域下创建的函数只
+能在函数内部调用和变量一样，JS在程序执行前，把使用
+function声明的函数提升到最前边，调用可以再任意合法位置
+
+###### **递归的调用**
+递归求和；
+```js
+function getSum(n){
+ 
+   if(n==1){
+       return 1;
+   }
+   return n+getSum(n-1);
+}
+var res=getSum(10);
+console.log(res);
+```
+ 递归求斐波拉切数列
+``` js
+function getSum(n){
+   if (n==1)
+   {
+       return 1;
+   }
+   if (n==0)
+   {
+       return 0;
+   }
+return getSum(n-1)+getSum(n-2);
+var a=getSum(10-n);
+console.log(a);
+}
+var res=getSum(10);
+console.log(res);
+```
+###### 匿名函数**
+1. 函数申明
+>函数申明可提升，可以再合法位置调用；函数表达
+式则不可以提升，必须先声明在调用。
+2. 函数表达式
+> var 函数名称=function(形参列表){
+   函数体
+   return 返回值;
+ }
+ 调用：函数名称(实参列表)
+
+3. 匿名函数的调用
+###### //含有两个参数的匿名函数自调用：
+ ``` js
+ function fn(a,b){
+//调用函数名称的时候，实参赋值给形参
+ var a1=a();
+   var b1=b();
+   var c=a1+b1;
+   console.log(c);
+}
+   fn(function(){
+   return 1;
+   },
+   function(){
+   return 2; 
+   }
+);
+ ```
+###### 全局函数**
+>encodeURL,decodeURI parseint,parseFloat,
+isNaN,isFinite,eval
+
+###### 对象**
+js中的对象
+> 内置对象：JS提供的                           
+ 宿主对象：根据不同的执行环境来划分                            
+ 自定义对象：自己创建的对象  
+
+###### 自定义对象**
+1. 对象字面量
+    使用对象字面量创建对象
+2. 内置构造函数
+    使用内置构造函数创建对象
+``` js
+var book=new Object();  //创建一个空对象
+book.id=103;  //添加属性，属性名不能添加引号
+book['titlte']='三国演义'; //添加属性，属性名必
+//须加引号；如果不加引号，会被认为是变量.
+```
+3. 自定义构造函数(js高级)
+4. 访问对象中的属性
+    (1)获取属性值
+>  emp.eid     
+  emp['ename']
+ 如果要获取的属性名不存在，返回undefined
+ 
+    (2)遍历对象中的属性(for-in)
+```js
+ for(var key in emp){
+   //emp 要遍历的对象
+   //key 要遍历的每一个属性名
+   //emp[key]  通过属性名获取对应的属性值
+ }
+//遍历成绩
+var score={
+chinese:90,
+math:88,
+English:99,
+history:99
+};
+var sum=0;
+for (var key in score){
+   //console.log(key,score[key]);
+   sum+=score[key];
+}
+   console.log(sum);
+```
+5. 对象中的方法
+```js
+方法也称成员方法，对应的
+ var person={
+   name: 'tom',
+   say: function(){
+      this.name  //this指代当前的对象
+   }
+ }
+ person.say(); //调用对象中的方法
+ //实例
+var person={
+   //成员属性
+   name:'tom',
+   age:18,
+       //成员方法
+       say:function(){
+       console.log('我的名字叫'+person.name);
+       }
+};
+//调用成员方法
+person.say();
+```
+6. 课后作业
+7. 检测对象中是否含有某个属性
 ### 常见错误
 
 ### ES6
@@ -125,7 +316,7 @@ var vm=new Vue({
     }
   }
 })
-```
+ ```
 
 ### MVVM模式
 
@@ -143,13 +334,13 @@ new Vue({
      })
 
 ```
- **强调: HTML中有几处变化，data对象中就要有几个变量**
-**与之对应**。
+ ###### 强调: HTML中有几处变化，data对象中就要有几个变量**
+###### 与之对应**。
 
 3.绑定语法定义变量{{}}
 
 #### 指令
-**1绑定属性.v-bind**
+###### 1绑定属性.v-bind**
   何时: 只要属性值需要根据变量动态变化时，  
   就要用v-bind或:简写
   如何: 
@@ -162,10 +353,10 @@ new Vue({
   ```
   去{{}}换v-bind:
   其实可简写: `<img v-bind:src="...`去{{}}换:
-**2.元素显示/隐藏：**
+###### 2.元素显示/隐藏：**
   单个元素： v-show="判断条件"
   多个元素:v-if="判断条件" 
-**3.由数组生成HTML**
+###### 3.由数组生成HTML**
   1. data中必须先定义一个可遍历的数组
 2. 在HTML中使用v-for遍历数组，反复生成多个相同结构
 的元素，并动态绑定元素的内容。
@@ -173,8 +364,8 @@ new Vue({
   <要反复生成的元素` v-for="(elem,i) of` 数组" :key="i"
   强调: 特例: v-for中的循环变量可被v-for自己或子元素
   用于绑定！
-**4.事件绑定:v-on:事件名="处理函数" 简写为@事件名="处**
-**理函数"**
+###### 4.事件绑定:v-on:事件名="处理函数" 简写为@事件名="处**
+###### 理函数"**
   1. 处理函数必须定义在:
 ``` js 
 new Vue({
@@ -206,7 +397,7 @@ e: methods:{
                     ` e.offsetX, e.offsetY`
 
 
-**5. 避免用户短暂看到{{}}用：v-cloak**
+###### 5. 避免用户短暂看到{{}}用：v-cloak**
 解决: 只能自己手写！用属性选择器:
         `  [v-cloak]{display:none}`
   强调: v-cloak不能改名！改名了，vue就找不到了！
@@ -217,23 +408,23 @@ e: methods:{
 <h1 v-text="`姓名: ${uname}`"></h1>
 <h2 v-text="`性别: ${sex==1?'男':'女'}`"></h2>
 ```
-**6. 绑定HTML片段:v-html**
+###### 6. 绑定HTML片段:v-html**
 问题: 使用{{}}绑定HTML片段，VUE不会解析HTML片段为
 网页内容。而是原样显示HTML  代码 
 解决: 今后，只要绑定一段HTML片段，必须用v-html。
 如何:` <ANY v-html="变量"></ANY>`
-**7.只做一次绑定：v-once**
-**8.让{{}}原样显示。v-pre**
+###### 7.只做一次绑定：v-once**
+###### 8.让{{}}原样显示。v-pre**
 
 ####this指向问题汇总
-**1. 普通函数或匿名函数自调中的this->window**
+###### 1. 普通函数或匿名函数自调中的this->window**
      严格模式下: this->undefined
-**2. obj.fun()   fun中的this->obj**
-**3. new Fun()   Fun中的this->正在创建的新对象**
-**4. 原型对象中的函数里的this->将来调用当前函数的.前**
-**的当前类型的子对象。**
-**5. btn.onclick=function(){... }  this->btn**
-**6. 回调函数:**
+###### 2. obj.fun()   fun中的this->obj**
+###### 3. new Fun()   Fun中的this->正在创建的新对象**
+###### 4. 原型对象中的函数里的this->将来调用当前函数的.前**
+###### **的当前类型的子对象。**
+###### 5. btn.onclick=function(){... }  this->btn**
+###### 6. 回调函数:**
 ```js
   arr.forEach(function(){ ... })
   arr.map(function(){ ... })
@@ -250,14 +441,14 @@ e: methods:{
   //所以，通常如果希望回调函数中的this不指window，  
   //而是跟外部的this保持一致，都要改为箭头函数
 ```
-**7. jQuery中的回调函数:**
+###### 7. jQuery中的回调函数:**
      ` $().each(function(){ ... })`
      ` $().animate({ ... }, ms, function(){ ... })`
       jquery中的多数回调函数,this->当前正在操作的dom元素,还
       要注意是否有  
       阻止冒泡；
-  **8. 不考虑之前已经总结的情况，vue中一切this都指向当前**
-  **new Vue()对象。**
+  ###### 8. 不考虑之前已经总结的情况，vue中一切this都指向当前**
+  ###### new Vue()对象。**
   所以在vue js中访问任何变量都要加this.变量名。但是html中绑
   定变量名不用加this！
 
@@ -577,7 +768,7 @@ Vue.component("my-counter",{
   比如: <my-counter></my-counter>
 
 #####组件化开发 组件间的数据传递
-**父->子的通信:** 
+###### 父->子的通信:** 
   1. 子: 为组件定义自定义属性，将来用于从父对象中
   绑定获得父对象中的变量。
 ```js   
@@ -597,13 +788,13 @@ var 子={
    孩子的兜 <-- 爹的变量
 <br>
 ##### 4. SPA: Single Page Application
->**多页面**	
-1.一个应用中包含**多个.html	**
+###### 多页面**	
+>1.一个应用中包含**多个.html	**
 2.每切换一次页面，都会重新发送请求——**请求次数多**	
 3.每次切换页面时，都要重建整棵DOM树——**效率低**	
 4.对于共用的资源，每次**切换页面，都要重复请求。**	
-**单页面**
-1.一个应用中只有**一个.html**
+###### 单页面**
+>1.一个应用中只有**一个.html**
 2.所有组件都是在首页第一次加载时，已经全部加载过来了
 。每切换一次页面，不需要向服务器重新发起页面请求。只
 是在客户端本地挑选匹配的组件替换页面内容而已。
@@ -663,4 +854,191 @@ var vm=new Vue({
 })
  ```
 
+
+#### 1.安装使用方法
+下载安装二种方式
+   (1)方式一:(学习)
+    mint-ui官方网站下载css/js/fonts 加载当前html文件中
+   (2)方式二:
+    vue cli 脚手架工具下载配置
+    在脚手架当前目录下  npm i mint-ui -S
+    #以上指令下载安装
+   验证: node_modules/mint-ui/lib 所有组件
+    package.json
+  启动脚手架指令
+    npm run serve
+   #其中 serve 可以配置package.json
+
+####组件库的引入
+ (1)引入方式一:按需引入
+  (2)引入方式二:完整引入(唯一正确)
+     -必须先下载 mint-ui库
+     -在main.js [引入其它库并且配置库]
+      `import MintUI from "mint-ui" `#完整引入mint-ui库
+     ` import "mint-ui/lib/style.css"` #mint-ui 样式文件
+     ` Vue.use(MintUI); `       
+      #将mint-ui库所有组件注册vue实例中
+      #"mint-ui" node_modules下目录名称
+      #MintUI 为组件起名
+      #只引mint-ui组件库库文件还有一个文件需要
+      #单独引入 mint-ui库有一个样式文件
+####调用
+短消息提供框:常用 删除成功;登录成功;用户名有误
+    基本语法: this.$toast({message:"",....});
+    参数
+    message:提示消息文本的内容
+    position:位置 top;bottom;middle
+    duration:持续时间(单位毫秒) 默认3000
+    className:类名为其添加样式
+    iconClass:图标类名
+ 
+####组件库--创建新组件
+(1)创建空组件
+      `src/components/exam/Exam01.vue`
+     (2)为空组件指定路径
+      src/router.js      path:'/Exam01'..
+     (3)运行组件:在浏览器地址栏中输入空组件地址回车
+     ` http://127.0.0.1:8080/#/Exam01`
+     (4)添加内容再运行
+ 
+####表单
+###### 1.开关**
+``` html
+ <mt-switch v-model="val1">开关</mt-switch>
+ ```
+
+###### 2.单选框列表**
+
+```html
+  <mt-radio  
+  title="单选框列表"  
+   v-model="val2"       
+   :options="['选项a','选项b','选项c']">
+  </mt-radio>
+ ```
+###### 3.复选框列表**
+``` html
+  <mt-radio 
+  title="单选框列表" 
+  v-model="val2"       
+  :options="['选项a','选项b','选项c']"> 
+  </mt-radio>
+```
+####父子面板
+ 面板,可切换显示子页面 
+ ``` html
+<mt-tab-container v-model="active"> <--!父元素(面板)-->
+    <mt-tab-container-item id="tab1"><--!子面板1-->
+      <mt-cell v-for=""></mt-cell><--!单元格-->
+    </mt-tab-container-item>
+
+    <mt-tab-container-item id="tab2"><--!子面板2-->
+      <mt-cell v-for=""></mt-cell><--!单元格-->
+    </mt-tab-container-item>
+</mt-tab-container>
+  ```
+  注意:改变active值与子面板id一致即显示对应子面板
+ 
+####底部选项栏
+底部选项卡,点击tab会切换显示页面,
+``` html
+<mt-tabbar v-model="selected" fixed>
+  <mt-tab-item id="外卖">
+      <img slot="icon" src="../asserts/100*100.png" />
+    外卖
+  </mt-tab-item>
+  <mt-tab-item id="订单">
+      <img slot="icon" src="../asserts/100*100.png" />
+    外卖
+  </mt-tab-item>
+</mt-tabbar>
+```
+**fixed 固定在页面底部
+-value 返回当前选中tab-item的id**
+
+####父子间通讯
+**子组件S09.vue**
+``` html
+<h3>{{msg}}</h3> //父组件传 msg
+<img :src="img_url" />//父组件传 img_url
+<button @click="add3"></button> //父组件传 add
+<script>
+  export default {
+      props:{    //接收父组件数据
+        msg:{default:""},    //msg默认空字符串
+        img_url:{default:""}, //img_url默认空字符串
+        add3:{type:Function} //add 函数
+      }
+  }
+</script>
+```
+**父组件: F10.vue**
+``` html
+  <script>
+  //1:引入子组件文件
+  import S09 from "./S09.vue";
+  //2:注册子组件,起标签名
+  components:{
+    "s09": S09
+  }
+  myadd(){
+  }
+  </script>
+  <--！调用子组件-->3:
+  <template> 
+      <s09 
+      msg="微信(11)"  
+      :img_url="require('../../asseets/01.png')"
+      :add3="myadd" >
+      </s09>
+  </template>
+```
+####mint-ui组件库-应用
+2.2:mint-ui组件库-应用-分析功能
+>   (1)顶部标题栏(完全自定义)
+   (2)面板(主体功能使用mint-ui面板组件)
+   (3)底部导航条(主体功能使用mint-ui tabbar组件)
+
+**解决小问题:**
+   (1)如何动态读取文件中图片路径
+   (2)图片路径一定是在服务器端 示例: http://127.0.0.1:3000/1.jpg
+    `<img :src="item.img" />`
+   (3)本地图片路径报错
+
+**注意：vue事件有一些修饰符 native:原生事件**
+>   如果自定义属性直使用事件绑定即可,如果调用组件库中组件
+      直接绑定失败情况,清加修饰符 native 启动原生事件绑定
+    父元素给子元素绑定事件 native
+    #注意:去除默认边框
+    -App.vue  根组件它的内补丁影响我们组件
+    -normalize.css->n.css 通用样式文件
+    public/index.html
+ 
+####session-会话-(前端后端程序)
+*(1)session一个用户操作过程*
+>    -会话开始:当用户打开某个网站第一个网页
+    -会话中:中间用户可以打开此网站多个网页
+    -会话结束:当用户关闭浏览器
+
+*(2)session对象(在服务器为了保存此次会话专有数据对象)*
+>    session对象是保存当前会话中使用数据,在当前会话
+     中所**有网页可以共享此数据**，但是当会话结束session数据
+     失效
+     为什么使用session 对象,项目中有一些数据必须保存
+     session对象比如:当前登录用户编号 uid
+     解决问题:
+ 
+
+ 
+ 
+ 
+
+
+
+
+ 
+
+
+
+ 
 

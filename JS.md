@@ -221,10 +221,10 @@ js中的对象
 2. 内置构造函数
     使用内置构造函数创建对象
 ``` js
-var book=new Object();  //创建一个空对象
-book.id=103;  //添加属性，属性名不能添加引号
-book['titlte']='三国演义'; //添加属性，属性名必
-//须加引号；如果不加引号，会被认为是变量.
+var book=new Object(); //创建一个空对象
+book.id=103;//添加属性属性名不能添加引号
+book['titlte']='三国演义';//添加属性，属性名必
+//须加引号；如果不加引号,会被认为是变量.
 ```
 3. 自定义构造函数(js高级)
 4. 访问对象中的属性
@@ -266,19 +266,93 @@ for (var key in score){
  person.say(); //调用对象中的方法
  //实例
 var person={
-   //成员属性
-   name:'tom',
-   age:18,
-       //成员方法
-       say:function(){
-       console.log('我的名字叫'+person.name);
-       }
+  //成员属性
+  name:'tom',
+  age:18,
+      //成员方法
+      say:function(){
+      console.log('我的名字叫'
+      +person.name);
+      }
 };
 //调用成员方法
 person.say();
 ```
 6. 课后作业
 7. 检测对象中是否含有某个属性
+ >1.'属性名'  in  对象  // true->存在
+   false->不存在  
+ 2.对象.属性名=== undefined //true->不存在
+   false->存在
+ 3.查看某个属性是否存在于对象中：
+对象.hasOwnproperty('属性名')；true存在
+，false不存在
+###数组
+#####内置构造函数
+new Array()
+#####数组API
+数组名.length
+#####数组的分类
+ 索引数组：以整数作为下标
+ 关联数组：以字符串作为下标
+#####遍历数组
+for ...in
+>for (var key in 数组){
+   key 需要遍历的下标
+   数组[key]  下标对应元素
+}
+``` js
+//用循环的方法实现遍历，适合索引数组
+var sum=0;
+var score=[88,76,65,88,88];
+for (var i=0;i<=4 ;i++ )
+{
+   sum+=score[i];
+}
+console.log(sum);
+
+
+//通过for..in实现遍历,适用范围广
+var sum=0;
+var score=[88,76,65,88,88];
+for(var key in score){
+sum+=score[key]
+}
+console.log(sum);
+
+//创建数组，遍历求最大值
+var number=[12,33,44,35,64,35,
+35,36,367,64,36,38];
+for (var i=0,max=number[0];i<number.
+length ;i++ )
+{
+   if (max<=number[i])
+   {
+       max=number[i];
+   }
+}
+console.log(max);
+ ```
+###数组API
+>toString()
+arr.join('-')
+arr.concat(arr1,arr2)
+arr.reverse()//翻转数组中的元素
+arr.slice(start,end)//截取
+arr.splice(start,count,value1,value2..)//删添
+sort()//对数字从小到大排序
+push()//末尾添加，返回长度
+pop()//删除末尾元素，返回删除元素
+unshift()//头部添加，返回长度
+shift()//头部删除，返回删除元素
+
+**二维数组**
+>var arr=[ [1,2,3 ],[4,5,6 ],[ 7,8,9],
+[ 11,12,13] ];
+ arr=null;
+arr2=null;
+console.log(arr);//null,内存的清理方式
+console.log(typeof null);//object
 ### 常见错误
 
 ### ES6
@@ -1001,13 +1075,16 @@ var vm=new Vue({
 
 **解决小问题:**
    (1)如何动态读取文件中图片路径
-   (2)图片路径一定是在服务器端 示例: http://127.0.0.1:3000/1.jpg
+   (2)图片路径一定是在服务器端 示例:
+    http://127.0.0.1:3000/1.jpg
     `<img :src="item.img" />`
    (3)本地图片路径报错
 
 **注意：vue事件有一些修饰符 native:原生事件**
->   如果自定义属性直使用事件绑定即可,如果调用组件库中组件
-      直接绑定失败情况,清加修饰符 native 启动原生事件绑定
+>   如果自定义属性直使用事件绑定即可,如果调
+用组件库中组件
+  直接绑定失败情况,清加修饰符 native 启动原
+  生事件绑定
     父元素给子元素绑定事件 native
     #注意:去除默认边框
     -App.vue  根组件它的内补丁影响我们组件
@@ -1022,15 +1099,355 @@ var vm=new Vue({
 
 *(2)session对象(在服务器为了保存此次会话专有数据对象)*
 >    session对象是保存当前会话中使用数据,在当前会话
-     中所**有网页可以共享此数据**，但是当会话结束session数据
-     失效
+     中所**有网页可以共享此数据**，但是当会话结束
+     session数据失效
      为什么使用session 对象,项目中有一些数据必须保存
      session对象比如:当前登录用户编号 uid
      解决问题:
- 
+**如何配置前后端代码来启动session会话**
+#####常见安全问题
+**(1)服务器**
+```js
+-//引入express-session模块
+const session = require("express-session")
+-//配置express-session模块
+server.use(session({
+    secret:"128位字符串", //#自定义字符串用于
+    //加密数据使用
+    resave:true,  // #每次请求更新数据
+    saveUninitialized:true //#保存初始化数据
+  }))
 
- 
- 
+
+  //-将数据保存session对象
+     req.session.uid = 2; //   #正确
+     req.session.id = 2;  //   #错误
+  //   #为什么不能用id原因，session对象
+  //自己有一个属性id
+   //  -从session中获取数据
+     var uid = req.session.uid;
+     示例(1):
+// 用户登录成功将uid保存session中,
+//用户获取购物中内容读取session中uid作为判断条件
+     - app.get("/login",(req,res)=>{
+        if(result.length > 0){
+          req.session.uid = 1;
+        }
+     })
+    -app.get("/cart",(req,res)=>{
+         var uid = req.session.uid;
+         if(!uid){
+           //没登录
+          }
+    })
+
+```
+**（2）脚手架**
+``` js
+ main.js
+    // 1:配置axios发送ajax请求时保存session信息
+      axios.defaults.widthCredentials=true
+    // 2:配置axios基础路径
+      axios.defaults.baseURL = "http://127.0.0.1:3000/"
+    // 示例:登录
+      this.axios.get("login");
+   //  常见错误
+      -this.axios.get("http://127.0.0.1:3000/login");
+      -this.axios.get("http://localhost:3000/cart");
+  ```
+###### 如何调试ajax错误
+  (1)按F12->network 网络控制面板->
+    -登录操作
+    -出现新请求信息 login  xhr  点击项目
+    -查询header  标签:检测出参数传递是否正确
+    -查询 response 标签:检测出返回结果是否正确
+**2.1：错误集锦**
+>(1)脚手架启动错误  errno -4058
+  -启动目录没有脚手架程序
+  -node_modules 出错造成启动
+(2) http://127.0.0.1:8081/
+  原因:前一个脚手架没有停止 ctrl+c
+(3) Uncaught (in promise) Error: Network Error
+  原因:node.js 出错停止工作   查询node.js控制台
+(4) connect ECONNREFUSED 127.0.0.1:3306
+原因:mysql停止工作
+(5) Unknown column 'name' in 'where clause'
+原因:未知列 name
+sql语句中操作name列，但是表中没有此列
+解决:sql语句错误/表没有不存在
+(6) http://127.0... 404 (Not Found)
+解决:请求程序地址错误 login
+
+**2.2登陆成功--跳转**
+>用户登录成功-跳转操作 /Home1
+`this.$router.push("组件路径");`
+示例:
+登录成功跳转 /Home1组件
+`this.$router.push("/Home1");`
+#创建空组件 /Home1
+
+> -md5单向加密没有解密算法
+       -md5多次加密    md5(md5('123'))
+       -更有效方法强化用户密码难: 
+
+
+#### 学子移动端的商品加载
+``` html
+<template>
+<div id="product">
+    <div  v-for="(item,i) of list"
+      :key="i" class="good-item">
+      <div>
+        <img 
+        :src="'http://127.0.0.1:3000/img/'
+        +item.img_url">
+      </div>
+        <h4>{{item.title}}</h4>
+        <h3 class="now">
+          {{item.price}}
+        </h3>
+    </div>
+    <mt-button @click.native="loadMore()">
+      加载更多
+    </mt-button>
+</div>
+</template>
+
+<script>
+export default {
+  data(){
+    return{
+        list:[],
+        pno:0,
+        ps:4
+    }
+  },
+  methods:{
+    loadMore(){//加载更多的数据
+        var url="product";
+        this.pno++;
+        var obj={
+            pno:this.pno,
+            pageSize:this.ps
+        };
+        this.axios.get(url,{params:obj})
+        .then(result=>{
+            console.log(result.data.data);
+            //数据覆盖
+            // this.list=result.data.data;
+            //数据追加,concat方法
+            var rows =this.list
+            .concat(result.data.data);
+            this.list=rows;
+        })
+    }
+  },
+        created() {
+            this.loadMore();
+        },
+}
+</script>
+ ```
+####登录操作&购物车组件交互demo
+通过login界面的登录跳转得到session缓存数据
+``` js
+<script>
+export default {
+data(){
+    return {
+        uname:"tom",
+        upwd:"123456"
+    }
+},
+methods:{
+  btnLogin(){
+    var reg=/^[1-9a-zA-Z_]{3,12}$/i;
+  //用规则表达式去验证用户名是否符合格式要求
+    var result=reg.test(this.uname);
+    var u=this.uname;
+    var p=this.upwd;
+  //  如果符合要求
+    if(result==true){
+      console.log('用户名通过')
+        if(reg.test(this.upwd)){
+          console.log('密码通过')
+          //发送ajax请求
+          var url="login";
+          var obj={uname:u,upwd:p};
+          this.axios.get(url,{params:obj})
+          .then(result=>{
+            // console.log(result)
+            //1.判断服务器返回结果
+            console.log(result.data.code==1)
+            if(result.data.code>0){
+            // 　window.location.href="
+            //http://127.0.0.1:8080/#/xzHome";
+            // this.$router.push("/xzHome")
+            this.$router.push("/Cart")
+            console.log('跳转成功')
+          }
+          // 2.cose>0 跳转到Home组件
+
+          // 3.创建xz/hone.vuw组件
+          // 4.code<0交互提示
+          })
+        }else{
+            console.log('密码不合规则')
+        }
+      }else{
+          console.log('用户名不合规则')
+      }
+    }
+}
+}
+</script>
+```
+**登录跳转后得到uid的缓存数据，数据在后台app.js**
+**购物车demo**
+```html
+<template>
+<div class="cart">
+  <!--全选按钮-->
+  <div class="selectAll">
+  全选
+  <input type="checkbox" @change="selectAll"/>
+  </div>
+  <!--购物商品信息-->
+  <div class="cart-item"
+  v-for="(item,index) of list" 
+  :key="index">
+    <div class="leftImgTxt"> 
+      <input type="checkbox" 
+      v-model="item.cb" />
+      <img :src="'http://127.0.0.1:3000/img/'
+      +item.img_url" 
+      class="img"/>
+      <div class="rightImg">
+        <span>{{item.price}}</span>
+        <span></span>
+      </div>
+    </div>
+    <mt-button class="delBtn" @click="delItem" 
+    :data-id="item.id">删除</mt-button>
+  </div>
+  <!--删除选中商品-->
+  <div class="delAll">
+    <mt-button @click="delAll">
+      清空购物车
+    </mt-button>
+    <mt-button @click="delSelected">
+    删除选中商品
+    </mt-button>
+  </div>
+</div>
+</template>
+```
+**显示购物车onload**
+```js
+loadMore(){
+  var url="cart"
+  this.axios.get(url).then(
+      result=>{
+      var rows=result.data.data;
+      console.log(this.list);
+      //添加新属性控制复选框
+      for(var item of rows){
+          item.cb=true;
+      }
+      this.list=rows;
+      
+      }
+  )
+}
+```
+**商品全部选中**
+```js
+selectAll(e){
+    //1:获取当前全选按钮状态
+    var cb = e.target.checked;
+    //2:获取购物车数组列表
+    //3:创建循环
+    console.log(cb)
+    for(var item of this.list){
+    //4:将当前商品cb状态修改全选状态
+    item.cb = cb;
+    }
+    console.log(this.list)
+}
+```
+**删除单个商品**
+ ```js
+  delItem(e){
+     //0:确认提示消息
+     this.$messagebox({
+       title:"消息",
+       message:"是否删除指定数据",
+       showConfirmButton:true,
+       showCancelButton:true
+     }).then(result=>{
+        //如果用户选中取消按钮,停止执行
+        if("cancel"==result){
+          return;
+        }else{
+     //1:获取当前商品id
+     var id = e.target.dataset.id;
+     //2:发送ajax删除商品
+     var url = "delItem";
+     var obj = {id:id};
+     this.axios.get(url,{params:obj})
+     .then(result=>{
+         this.loadMore();
+      })
+      }
+     })
+    }
+  ```
+**删除所有商品**
+```js
+delAll(e){
+  this.$messagebox({
+      title:"消息",
+      message:"是否删除指定数据",
+      showConfirmButton:true,
+      showCancelButton:true
+  }).then(result=>{
+    if("censel"==result){
+        return;
+    }else{
+    var url="delAll";
+    this.axios.get(url)
+    .then(result=>{
+      this.loadMore();
+    })
+    }
+  })
+}
+```
+**删除选中的商品**
+``` js
+delSelected(){
+  this.$messagebox({
+      title:"消息",
+      message:"是否删除指定数据",
+      showConfirmButton:true,
+      showCancelButton:true
+  }).then(result=>{
+      if("censel"==result){
+          return ;
+      }else{
+          var url="delSelected"
+          for (var item in this.list){
+              //获取选中的商品的id
+              // if item.cd
+          }
+          this.axios.get(url,{})
+          .then(result=>{
+              this.loadMore();
+          })
+      }
+  })
+
+}
  
 
 

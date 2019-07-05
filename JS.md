@@ -333,7 +333,7 @@ length ;i++ )
 }
 console.log(max);
  ```
-###数组API
+### 数组API
 >toString()
 arr.join('-')
 arr.concat(arr1,arr2)
@@ -353,10 +353,149 @@ shift()//头部删除，返回删除元素
 arr2=null;
 console.log(arr);//null,内存的清理方式
 console.log(typeof null);//object
-### 常见错误
+#### 字符串API
+>(1)转义字符 —— \
+(2)字符串中常用方法toUpperCase()/length()/
+charAt()/indexOf/ lastIndexOflastIndexOf/
+slice/substr/substring
+(3）匹配模式match(value)/search(value)/ 
+replace(value1,value2)
+(4)Math对象
+>>Math对象 ： Math对象不需要使用new创建，
+可以直接使用。
+  PI  获取圆周率   abs()  取绝对值；max()取最大值；
+  min()；random()取随机 >=0 <1                          
+ floor()  向下取整 ；ceil()向上取整； round()
+ 四舍五入取整；pow(x,y)取x的y次幂     
+#### 作业
+(2)练习：创建数组，存储若干个员工的姓名，每次运行随
+机取出1个员工的姓名打印出来  
+``` js
+var list=['张三','李四','王五','赵六','张七',
+'刘八','丁九','黄十'];
+var name=list[Math.floor(10*Math.random())];
+console.log(name);
+ ```
+                       
+ 创建数组，包含a-z, A-Z, 0-9元素；在数组中随机
+ 取4个字符，放到一个新数组中。 push  ,去除重复  
+``` js
+var list=['a','b','c','d','e','f','g','h','i',
+'j','k','l','m','n','o','p','q','r','s','t','u',
+'v','w','x','y','z','A','B','C','D','E','F','G',
+'H','I','J','K','L','M','N','O','P','Q','R','S',
+'T','U','V','W','X','Y','Z','0','1','2','3','4',
+'5','6','7','8','9',];
+var arr=new Array(4);
+for (i=0;i<4 ; i++)
+{  
+   var list1=list;
+   arr[i]=list1[Math.floor(list1
+   .length*Math.random())];
+   //function fn(a){
+   //a();
+   //}
+   //fn(function(){
+   var zifu=arr[i];
+   var num=list1.indexOf(zifu,0);
+   list1.splice(num,1);
+   //count-=1;
+   //});
+}
+console.log(arr);
+ ```
+#### Date对象
+ (1)创建Date对象
+ //第二个参数范围是0~11；
+ >new Date(2019,3,18,10,30,40);
+new Date() 存储当前的系统时间
 
+(2)获取Date对象的信息
+``` js
+ getFullYear/getMonth/getDate/getHours/
+ getMinutes/getSeconds/getMilliseconds/
+ getDay(星期0~6)                           
+//获取时间相差的毫秒数：
+var d1=new Date();
+var d2=new Date('2019/10/1 0:0:0');
+//var t1=d1.getTime();
+//var t2=d2.getTime();
+//console.log(t2-t1);
+console.log(d2-d1);
+ ```
+(3)转为本地字符串
+```js
+ toLocaleString()//年-月-日 时:分:秒 
+ toLocaleDateString()//年-月-日       
+ toLocaleTimeString()//时:分:秒       
+ ```
+(4)设置Date对象的信息
+```js
+ setFullYear/setMonth/setDate/
+ setHours/setMinutes /setSeconds/
+ setMilliseconds/                
+ setTime// 设置距离计算机元年毫秒数，
+ //一旦使用后，年月日时分秒都会受到影响
+ ```
+### 常见错误
+>SyntaxError 语法错误，错误的使用了中文，
+缺少括号...程序不会执行。                            
+ReferenceError  引用错误，使用未声明的变量   
+ TypeError  类型错误，错误的使用了数据的类型，
+ 错误的使用括号                          
+ RangeError 范围错误，参数的使用超出了范围  
+new Array(-1)                            
+ 引用错误、类型错误、范围错误出现后，会影响后续
+ 代码的执行。    
+ 异常处理：                      
+  try{
+   尝试执行的代码，可能出现错误
+ }catch(err){
+   err：捕获的错误信息
+   处理错误的方案
+ }
 ### ES6
+  (1)块级作用域
+>比如for(var ....)中for里面申明的变量只在这个块内有效
+  (2)箭头函数：
+  (3)函数中的参数
+  模板字符串
 ### JSbasic习题集
+1. 打印100~1之间所有的整数
+```js
+var i=100;
+while(i>=1){
+  console.log(i);
+  i--;
+}
+ 
+//打印1~100之间所有的奇数；
+var i=1;
+while(i<=100){
+   if(i%2==1){
+       console.log(i);
+   }
+   i++;
+}
+```
+2. 打印1~100之间所有的奇数；
+```js
+var i=1;
+while(i<=100){
+   if(i%2==1){
+       console.log(i);
+   }
+   i++;
+}
+ ```
+3. 提示框猜数字
+4. 计算1~100之间所有能被3整除的数字之和
+5. or循环：多个参数，循环条件
+6. 打印9*9乘法表
+7. 打印本世纪前是个闰年
+8. 打印1~100的质数
+9. 返回最大值
+10. 封装函数并调用
 
 ## VUE
 
@@ -663,13 +802,13 @@ data:{
      <span class="vali vali_info vali_success"
 ```
 
-#####计算属性
+##### 计算属性
 1. 在new Vue中定义计算属性的逻辑
 ``` js
 //1. 在new Vue中定义计算属性的逻辑
    new Vue({
      el:"#app",
-     data:{  变量1, 变量2, ... },
+     data:{ 变量1, 变量2, ... },
      computed:{
        汇总的属性名(){
          return 汇总结果
@@ -770,7 +909,7 @@ data:{
 **实际给的确实第二个形参lang。**
 
 
-####axois
+#### axois
 1. 引入axios
 2. 发送请求: 
 ``` js
@@ -1347,16 +1486,20 @@ methods:{
 loadMore(){
   var url="cart"
   this.axios.get(url).then(
-      result=>{
-      var rows=result.data.data;
-      console.log(this.list);
-      //添加新属性控制复选框
-      for(var item of rows){
-          item.cb=true;
-      }
-      this.list=rows;
-      
-      }
+    result=>{
+    var rows=result.data.data;
+    console.log(this.list);
+    //添加新属性控制复选框
+    //更新
+    this.$store.commit("clear")
+    for(var item of rows){
+        item.cb=false;
+        //更新购物车数量
+        this.$store
+        .commit("increment")
+    }
+    this.list=rows;
+    }
   )
 }
 ```
@@ -1425,37 +1568,34 @@ delAll(e){
 ```
 **删除选中的商品**
 ``` js
-delSelected(){
-  this.$messagebox({
-      title:"消息",
-      message:"是否删除指定数据",
-      showConfirmButton:true,
-      showCancelButton:true
-  }).then(result=>{
-      if("censel"==result){
-          return ;
-      }else{
-          var url="delSelected"
-          for (var item in this.list){
-              //获取选中的商品的id
-              // if item.cd
-          }
-          this.axios.get(url,{})
-          .then(result=>{
-              this.loadMore();
-          })
-      }
+ delSelected(){
+  //删除多个商品
+  //1创建空变量保存空字符串
+  //2创建循环拼接字符串内容
+  //3.谈话框提示
+  //4.发送AJAX请求
+  //5.重新加载数据
+  var str='';
+  for (var item of this.list){
+    if(item.cb){
+      str+=item.id+","
+    }
+  }
+  console.log(str)
+  str=str.substring(0,str.length-1);
+  console.log(str)
+  if(str.length==0){
+    this.$messagebox("","请选择要删除的商品")
+    return;
+  }
+  var url="delSelected"
+  var obj={ids:str}
+  this.axios.get(url,{params:obj})
+  .then(result=>{
+    this.loadMore();
   })
 
 }
- 
+```
 
-
-
-
- 
-
-
-
- 
-
+##vuex

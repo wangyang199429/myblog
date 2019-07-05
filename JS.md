@@ -1598,4 +1598,50 @@ delAll(e){
 }
 ```
 
-##vuex
+### vuex 
+#### 使用方式
+
+-//脚手架下载vuex第三方模块 
+  `npm i vuex -S `
+     结果:node_modules/vuex/...
+    -main.js引入vuex
+    ` import Vuex from "vuex"`
+    -main.js创建vuex实例对象
+``` js
+  var store = new Vuex.Store({
+    state:{},
+    mutations:{},
+    getters:{}
+  })
+  state:     //保存全局共享数据
+  mutations: //修改全局共享数据函数
+  getters:   //获取全局共享数据函数
+-//main.js将vuex注册vue实例中
+  Vue.use(vuex);
+  new Vue({strore})
+-//其它组件获取vuex数据 <template>
+  {{$store.getters.获取数据方法}}
+-//其它组件操作vuex数据 js
+  this.$store.commit("修改数据方法")
+  ```
+  示例
+  ``` js
+   state:{cartCount:0}     //购物车数量
+    mutations:{
+        increment(state){  //将购物车数量加1
+            state.cartCount++;
+        }
+    }
+    getters:{
+       getCartCount(state){
+           return state.cartCount;  //获取购物车数量
+       }
+     }
+  ```
+
+**组件中**
+``` html
+<template>
+     <div>{{$store.getters. getCartCount }}</div>
+   </template>
+  ```

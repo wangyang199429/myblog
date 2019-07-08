@@ -10,20 +10,17 @@
 <body>
   <script>
 
-var search="?key0=0&key1=&key2=2"
-//去问号
-search=search.slice(1);
-//按照&切开
-var strs=search.split("&");
-console.log(strs);
-var params={}
-//遍历strs中的每个字符串
-for(var str of strs){
-  var arr=str.split("=");
-  params[arr[0]]=isNaN(arr[1])?
-  arr[1]:Number(arr[1])
+function setObj(p){
+    p.name="小红";
+    p={};
+    p.name="西西"
+    console.log(p)
 }
-console.log(params)
+var p={
+    name:"小明"
+}
+setObj(p); //小红
+console.log(p);
 
 
 

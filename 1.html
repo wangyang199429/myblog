@@ -8,29 +8,26 @@
 
 </head>
 <body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
   <script>
-
-function setObj(p){
-    p.name="小红";
-    p={};
-    p.name="西西"
-    console.log(p)
-}
-var p={
-    name:"小明"
-}
-setObj(p); //小红
-console.log(p);
-
-
-
-
-
-
-
+  var btns=document
+.getElementsByTagName("button");
+  var i=0;
+  for (var btn of btns){
+    i++
+    btn.onclick=(function(i){
+      return function(){
+        alert(i);
+      }
+    })(i)//原始类型：按值传递，复制副本
+  }
 
 
   </script>
-   
+
 </body>
 </html>

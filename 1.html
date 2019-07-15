@@ -8,26 +8,13 @@
 
 </head>
 <body>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-  <script>
-  var btns=document
-.getElementsByTagName("button");
-  var i=0;
-  for (var btn of btns){
-    i++
-    btn.onclick=(function(i){
-      return function(){
-        alert(i);
-      }
-    })(i)//原始类型：按值传递，复制副本
-  }
 
+<script>
+var str='ihaveaname'
+str=str.replace(/name/g,'10');
+console.log(str)
+</script>
 
-  </script>
 
 </body>
 </html>

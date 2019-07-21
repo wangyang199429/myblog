@@ -10,9 +10,16 @@
 <body>
 
 <script>
-var str='ihaveaname'
-str=str.replace(/name/g,'10');
-console.log(str)
+var str="fdaffdaaklfjklja"
+var arr=str.split("")
+for(var i=0;i<arr.length;i++){
+
+    arr[i]=arr[i+1]
+    arr[i+1].replace(i+1,"")
+    
+  
+}
+console.log(arr)
 </script>
 
 

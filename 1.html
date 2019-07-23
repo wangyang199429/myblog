@@ -8,20 +8,16 @@
 
 </head>
 <body>
-
+<input type="text" id="msg">
+<button id="send"></button>
 <script>
-var str="fdaffdaaklfjklja"
-var arr=str.split("")
-for(var i=0;i<arr.length;i++){
-
-    arr[i]=arr[i+1]
-    arr[i+1].replace(i+1,"")
-    
-  
-}
-console.log(arr)
+//建立到服务端websocket连接
+  var ws=new WebSocket("ws://localhost:8080");
+  send.onclick=function(){
+    if(msg.value.trim()!=="")
+    ws.send(msg.value.trim());
+  }
 </script>
-
 
 </body>
 </html>

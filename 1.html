@@ -5,18 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+input{
+  height: 2000px;
+}
 
+
+  </style>
 </head>
 <body>
 <input type="text" id="msg">
 <button id="send"></button>
 <script>
-//建立到服务端websocket连接
-  var ws=new WebSocket("ws://localhost:8080");
-  send.onclick=function(){
-    if(msg.value.trim()!=="")
-    ws.send(msg.value.trim());
-  }
+ var timer;
+ window.onscroll=function(){
+     if(timer!==undefined){
+         clearTimeout(timer);
+     }//防抖处理
+     timer=setTimeout(function(){
+         console.log("发送ajax请求，加载更多数据...");
+     },200)
+ }
 </script>
 
 </body>

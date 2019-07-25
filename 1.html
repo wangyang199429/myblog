@@ -14,18 +14,46 @@ input{
   </style>
 </head>
 <body>
-<input type="text" id="msg">
-<button id="send"></button>
+  <h1 id="unm1"></h1>
+<button id="start">启动</button>
 <script>
- var timer;
- window.onscroll=function(){
-     if(timer!==undefined){
-         clearTimeout(timer);
-     }//防抖处理
-     timer=setTimeout(function(){
-         console.log("发送ajax请求，加载更多数据...");
-     },200)
- }
+function liang(){
+    return new Promise(function(open){
+        var bang="亮的接力棒";
+        console.log("亮气跑了");
+        setTimeout(function(){
+            console.log("亮到达终点");
+            open(bang);
+        },5000)
+    })
+}
+function ran(bang){
+    return new Promise(function(open){
+        
+        console.log("然拿着"+bang+"开始跑了");
+        setTimeout(function(){
+            console.log("然拿着"+bang+"到达了终点");
+            open(bang);
+        },5000)
+    })
+}
+function dong(bang){
+    return new Promise(function(open){
+        
+        console.log("东拿着"+bang+"开始跑了");
+        setTimeout(function(){
+            console.log("东拿着"+bang+"到达了终点");
+            open(bang);
+        },5000)
+    })
+}
+liang()
+.then(ran)
+.then(dong)
+.then(function(){
+    console.log("比赛结束")
+})
+
 </script>
 
 </body>

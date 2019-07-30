@@ -162,7 +162,7 @@ arrsplice(strat,n,值1，值2,...);(删除并添加)
 (值) arr.unshift(值) 
 137:**事件冒泡等**
 ``` js
-document.addEventListener(&quot;click&quot;
+document.addEventListener('click';
 , myFunction, true);
 element.removeEventListener(&quot;mousemove&quot;, myFunction);
 btn1Obj.attachEvent(&quot;onclick&quot;,method1);

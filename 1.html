@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-input{
-  height: 2000px;
-}
-
-
-  </style>
+    <meta charset="UTF-8">
+    <title>Lazyload 2</title>
+    <style>
+    img {
+        display: block;
+        margin-bottom: 50px;
+        height: 200px;
+    }
+    </style>
 </head>
 <body>
-  <h1 id="unm1"></h1>
-<button id="start">启动</button>
-<script>
-function liang(){
-    return new Promise(function(open){
-        var bang="亮的接力棒";
-        console.log("亮气跑了");
-        setTimeout(function(){
-            console.log("亮到达终点");
-            open(bang);
-        },5000)
-    })
-}
-function ran(bang){
-    return new Promise(function(open){
-        
-        console.log("然拿着"+bang+"开始跑了");
-        setTimeout(function(){
-            console.log("然拿着"+bang+"到达了终点");
-            open(bang);
-        },5000)
-    })
-}
-function dong(bang){
-    return new Promise(function(open){
-        
-        console.log("东拿着"+bang+"开始跑了");
-        setTimeout(function(){
-            console.log("东拿着"+bang+"到达了终点");
-            open(bang);
-        },5000)
-    })
-}
-liang()
-.then(ran)
-.then(dong)
-.then(function(){
-    console.log("比赛结束")
-})
+    <img src="images/loading.gif" data-src="images/1.png">
+    <img src="images/loading.gif" data-src="images/2.png">
+    <img src="images/loading.gif" data-src="images/3.png">
+    <img src="images/loading.gif" data-src="images/4.png">
+    <img src="images/loading.gif" data-src="images/5.png">
+    <img src="images/loading.gif" data-src="images/6.png">
+    <img src="images/loading.gif" data-src="images/7.png">
+    <img src="images/loading.gif" data-src="images/8.png">
+    <img src="images/loading.gif" data-src="images/9.png">
+    <img src="images/loading.gif" data-src="images/10.png">
+    <img src="images/loading.gif" data-src="images/11.png">
+    <img src="images/loading.gif" data-src="images/12.png">
+    <script>
 
-</script>
-
+    function throttle(fn,delay,atleast){
+        var timeout=null;
+        startTime=new Date();
+        return function(){
+            var curTime=new Date();
+            clearTimeout(timeout);
+            if(curTime-startTime>=atleast){
+                fun();
+                startTime=curTime;
+            }else{
+                timeout=setTimeout(fn,delay);
+            }
+        }
+    }
+    function lazyload(){
+        var images=document.getElementsByTagName("img")
+        var len=images.length;
+        var n=0;
+        return function(){
+            var seeHeight=documen.documenElement.clientHeight;
+            var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+            for(var i=n;i<len;i++){
+                if(images[i].getAttribute('src')==='images/loading.gif'){
+                    images[i].src=images[i].getAttribute('data-src');
+                }
+                n=n+1;
+            }
+        }
+    }
+    var loadImages=lazyload();
+    loadImages();
+    window.addEventListener('scroll',throttle(loadImages,500,1000),false)
+    </script>
 </body>
 </html>

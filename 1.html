@@ -12,52 +12,19 @@
     </style>
 </head>
 <body>
-    <img src="images/loading.gif" data-src="images/1.png">
-    <img src="images/loading.gif" data-src="images/2.png">
-    <img src="images/loading.gif" data-src="images/3.png">
-    <img src="images/loading.gif" data-src="images/4.png">
-    <img src="images/loading.gif" data-src="images/5.png">
-    <img src="images/loading.gif" data-src="images/6.png">
-    <img src="images/loading.gif" data-src="images/7.png">
-    <img src="images/loading.gif" data-src="images/8.png">
-    <img src="images/loading.gif" data-src="images/9.png">
-    <img src="images/loading.gif" data-src="images/10.png">
-    <img src="images/loading.gif" data-src="images/11.png">
-    <img src="images/loading.gif" data-src="images/12.png">
-    <script>
-
-    function throttle(fn,delay,atleast){
-        var timeout=null;
-        startTime=new Date();
-        return function(){
-            var curTime=new Date();
-            clearTimeout(timeout);
-            if(curTime-startTime>=atleast){
-                fun();
-                startTime=curTime;
-            }else{
-                timeout=setTimeout(fn,delay);
-            }
+<script>
+ var fullname="小王";
+    var student={    fullname:'小李',
+    prop:{
+    fullname:'李雷',
+        getFullName:function(){
+        return this.fullname;
         }
-    }
-    function lazyload(){
-        var images=document.getElementsByTagName("img")
-        var len=images.length;
-        var n=0;
-        return function(){
-            var seeHeight=documen.documenElement.clientHeight;
-            var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
-            for(var i=n;i<len;i++){
-                if(images[i].getAttribute('src')==='images/loading.gif'){
-                    images[i].src=images[i].getAttribute('data-src');
-                }
-                n=n+1;
-            }
         }
-    }
-    var loadImages=lazyload();
-    loadImages();
-    window.addEventListener('scroll',throttle(loadImages,500,1000),false)
-    </script>
+        }
+console.log(student.prop.getFullName());//1
+    var test=student.prop.getFullName;
+    console.log(test());//2
+</script>
 </body>
 </html>

@@ -13,18 +13,14 @@
 </head>
 <body>
 <script>
- var fullname="小王";
-    var student={    fullname:'小李',
-    prop:{
-    fullname:'李雷',
-        getFullName:function(){
-        return this.fullname;
-        }
-        }
-        }
-console.log(student.prop.getFullName());//1
-    var test=student.prop.getFullName;
-    console.log(test());//2
+ var [x,y]=getVal(),//函数返回值的解构
+	[name,,age]=['wayou','male','secrect'];//数组解构
+	function getVal() {
+		return [ 1, 2 ];
+	}
+	console.log('x:'+x+', y:'+y);//输出：x:1, y:2 
+	console.log('name:'+name+', age:'+age);
+
 </script>
 </body>
 </html>

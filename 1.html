@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <title>Lazyload 2</title>
     <style>
-    img {
-        display: block;
-        margin-bottom: 50px;
-        height: 200px;
+
+    div{
+        width:500px;
+        height:400px;
+        background-color:#f00;
+        animation:myani 2s;
+    }
+    @keyframes myani{
+        from{background:red;}
+        to {background: blue;}
     }
     </style>
+   
 </head>
 <body>
+  <div>
+      
+  </div>
 <script>
- var [x,y]=getVal(),//函数返回值的解构
-	[name,,age]=['wayou','male','secrect'];//数组解构
-	function getVal() {
-		return [ 1, 2 ];
-	}
-	console.log('x:'+x+', y:'+y);//输出：x:1, y:2 
-	console.log('name:'+name+', age:'+age);
 
 </script>
 </body>

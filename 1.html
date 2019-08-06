@@ -23,16 +23,41 @@
       
   </div>
 <script>
-var arr1 =[1,2,2,2,3,3,3,4,5,6],
-	    arr2 = [];
-	for(var i = 0,len = arr1.length; i< len; i++){
-	    if(arr2.indexOf(arr1[i]) < 0){
-	        arr2.push(arr1[i]);
-	    }
-	}
-	document.write(arr2); // 1,2,3,4,5,6
-	var arr3= new Set(arr1)
-	console.log(arr3)
+    // e=e||window.enent
+    // elem.addEventListenner("click",function(){})
+    // elem.attachEvent("onclick",function(){})
+
+    // e.target 
+    // e.srcElement
+    // var target=e.target||e.srcElement
+
+    // e.stopPropagation;
+    // e.cancelBubble=true;
+
+    // e.preventDefault;
+    // return false;
+
+    // function bindEvent(elem,eventName,handler){
+    //     if(elem.attachEvent!=="function"){
+    //         elem.addEventListenner(eventName,handle)
+    //     }else{
+    //         elem.attachEvent("on"+eventName,function(){
+
+    //         })
+    //     }
+    //     bindEvent(btn,"click",function(e){
+    //         var target=e.taget;
+    //     })
+    // }
+    
+   function parent(){
+       var a=1;
+       var b=function(){
+           console.log('from p')
+       }
+   }
+   
+   var 
 </script>
 </body>
 </html>
